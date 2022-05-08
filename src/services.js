@@ -1,16 +1,16 @@
 const {getDatabase} = require('./config');
 
-const collectionName = 'ads';
+const collectionName = 'Budget';
 
 async function insertExpense(expenseItem) {
   const database = await getDatabase();
-  const {insertedExpense} = await database.collection("Budget").insertOne(expenseItem);
+  const {insertedExpense} = await database.collection(collectionName).insertOne(expenseItem);
   return insertedExpense;
 }
 
 async function getExpense() {
   const database = await getDatabase();
-  return await database.collection("Budget").find({}).toArray();
+  return await database.collection(collectionName).find({}).toArray();
 }
 
 module.exports = {

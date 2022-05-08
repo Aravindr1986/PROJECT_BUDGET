@@ -7,6 +7,7 @@ const morgan = require('morgan');
 // defining the Express app
 const app = express();
 const config = require('./config')
+const services=require('./services')
 // defining an array to work as the database (temporary solution)
 const ads = [
   {title: 'Hello, world (again)!'}
@@ -24,10 +25,17 @@ app.use(cors());
 // adding morgan to log HTTP requests
 app.use(morgan('combined'));
 
-// defining an endpoint to return all ads
+// defining an endpoint to return all expense items
 app.get('/', (req, res) => {
-  res.send(ads);
+  services.getExpense()
+  res.send(services.getExpense());
 });
+
+app.post('/', (req, res) => {
+  services.insertExpense(req.body)
+  res.send(services.getExpense());
+});
+
 
 // starting the server
 app.listen(3001, () => {
