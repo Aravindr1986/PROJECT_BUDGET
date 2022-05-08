@@ -8,12 +8,12 @@ async function insertExpense(expenseItem) {
   return insertedExpense;
 }
 
-async function getAds() {
+async function getExpense() {
   const database = await getDatabase();
   return await database.collection("Budget").find({}).toArray();
 }
 
 module.exports = {
-  insertAd,
-  getAds,
+  insertExpense,
+  getExpense,
 };
