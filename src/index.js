@@ -7,7 +7,8 @@ const morgan = require('morgan');
 // defining the Express app
 const app = express();
 const config = require('./config')
-const services=require('./services')
+const routes=require('./routes')
+
 // defining an array to work as the database (temporary solution)
 const ads = [
   {title: 'Hello, world (again)!'}
@@ -26,15 +27,16 @@ app.use(cors());
 app.use(morgan('combined'));
 
 // defining an endpoint to return all expense items
-app.get('/', (req, res) => {
-  services.getExpense()
-  res.send(services.getExpense());
-});
+app.use('/',routes)
+// app.get('/', (req, res) => {
+//   services.getExpense()
+//   res.send(services.getExpense());
+// });
 
-app.post('/', (req, res) => {
-  services.insertExpense(req.body)
-  res.send(services.getExpense());
-});
+// app.post('/', (req, res) => {
+//   services.insertExpense(req.body)
+//   res.send(services.getExpense());
+// });
 
 
 // starting the server

@@ -9,6 +9,7 @@ async function insertExpense(expenseItem) {
 }
 
 async function getExpense() {
+  
   const database = await getDatabase();
   return await database.collection(collectionName).find({}).toArray();
 }
