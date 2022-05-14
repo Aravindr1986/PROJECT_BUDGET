@@ -1,20 +1,16 @@
-const MongoClient = require("mongodb");
+const {MongoClient} = require("mongodb");
 
 let database = null;
-
+const mongoDBURL= "mongodb://localhost/BudgetData"
 async function startDatabase() {
-    //const mongo = new MongoMemoryServer();
-    //const mongoDBURL = await mongo.getConnectionString();
-    const connection = await MongoClient.connect("mongodb://dbadmin:secret@127.0.0.1:27017/BudgetData", async (err) => {
-        if (err) throw err;
-        console.log("conncted to db")
-    }
-    );
+    const connection = await MongoClient.connect(mongoDBURL, {useNewUrlParser: false});
     database = connection.db();
+    console.log("Dbconnected!")
 }
 
 async function getDatabase() {
-    if (!database) await startDatabase();
+    if (!database)  startDatabase();
+    console.log(database)
     return database;
 }
 

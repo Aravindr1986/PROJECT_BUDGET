@@ -39,5 +39,6 @@ app.post('/', (req, res) => {
 
 // starting the server
 app.listen(3001, () => {
+  config.getDatabase();
   console.log('listening on port 3001');
 });
