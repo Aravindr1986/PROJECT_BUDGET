@@ -6,3 +6,6 @@
     docker-compose -d docker-compose.yml
 ### To run the APP 
     node src
+#### For running the app with constant refresh using nodemon:
+    npm install nodemon --global
+    nodemon src
