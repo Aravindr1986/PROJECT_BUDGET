@@ -4,15 +4,25 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const helmet = require('helmet');
 const morgan = require('morgan');
+const swaggerJsDoc = require('swagger-jsdoc');
+const swaggerUI = require('swagger-ui-express');
 // defining the Express app
 const app = express();
 const config = require('./config')
 const routes=require('./routes')
 
-// defining an array to work as the database (temporary solution)
-const ads = [
-  {title: 'Hello, world (again)!'}
-];
+//defining the swagger docs options
+const swaggerOptions={
+  swaggerDefinition : {
+    info:{
+      title : 'Monthly Budget Application',
+      version : '1.0.0'
+    }
+  },
+  apis:['./src/routes.js'],
+}
+const swaggerDocs=swaggerJsDoc(swaggerOptions);
+app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
 // adding Helmet to enhance your API's security
 app.use(helmet());
