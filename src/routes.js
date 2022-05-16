@@ -31,6 +31,7 @@ router.get('/', async (req, res) => {
  */
   
 router.post('/', async (req, res) => {
+    
     response = await services.insertExpense(req.body)
     res.send(response);
   });

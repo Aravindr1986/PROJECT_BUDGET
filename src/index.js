@@ -21,7 +21,7 @@ const swaggerOptions={
   },
   apis:['./src/routes.js'],
 }
-const swaggerDocs=swaggerJsDoc(swaggerOptions);
+const swaggerDocs = swaggerJsDoc(swaggerOptions);
 app.use('/api-docs',swaggerUI.serve,swaggerUI.setup(swaggerDocs));
 
 // adding Helmet to enhance your API's security
